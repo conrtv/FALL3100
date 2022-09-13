@@ -7,11 +7,11 @@
     <title>Reliable Vehicles Inventory</title>
     <link rel="stylesheet" href="css/lib/bootstrap.min.css" />
   </head>
-  <body class="d-flex flex-column justify-content-center align-items-center vh-100 col 4">
-    <div class="card mb-3">
+  <body class="d-flex flex-column justify-content-center align-items-center vh-100 ">
+    <div class="card mb-3  col-md-6">
         <div class="card-body text-center">
             <div>
-                <img src="images/lib/hippo.png" class="img-thumbnail  mx-auto d-block w-25" alt="Swollen Hippo"/>
+                <img src="images/lib/hippo.png" class="img-thumbnail  mx-auto d-block w-25" alt="Swollen Hippo Logo"/>
                 <div>
             <form>
                 <div class="form-group">
@@ -20,11 +20,12 @@
                 </div> 
                 <div class="form-group">
                     <button type="button" class="btn btn-warning mb-3" id="btnSubmitMake" aria-label="Submit Manufacturers Name">Submit</button>
+                    <button type="button" class="btn btn-warning mb-3" id="btnClearTable" aria-label="Clear Results">Clear Results</button>
                 </div>
               </form>
         </div>
     </div>
-    <div class="card d-none" id="divInventoryTable"">
+    <div class="card d-none" id="divInventoryTable">
       <div class="card-body">
         <table class="table" id="tblVehicles">
           <thead>
@@ -65,5 +66,12 @@
             })
         })
     </script>
+    <script>
+        $('#btnClearTable').on('click', function(){
+            $("#tblVehicles tbody tr").remove();
+            $('#divInventoryTable').addClass('d-none'); 
+        })
+    </script>
+
   </body>
 </html>
