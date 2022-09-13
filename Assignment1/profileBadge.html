@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Badge</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body
+    class="d-flex justify-content-center align-items-center vh-100 bg-primary">
+    <div class="card col-4 col-lg-3">
+      <div class="card-body">
+        <div>
+          <img id="imgProfile" class="img-fluid rounded-circle mx-auto d-block" alt=""/>
+          <div>
+            <h3 class="col-12 text-center" id="txtFirstName">First Name</h3>
+          </div>
+          <div class="col-12 text-center ">
+            <h3 class="col-12 text-center"id="txtLastName" id="txtLastName">Last Name</h3>
+          </div>
+          <p class="col-12 text-center "id="txtJob">Job</p>
+        </div>
+        <div>
+          <div>
+            <h4 id=>Address</h4>
+                <div>
+                    <p id="txtStreetAddress">Street Address<br>
+                    <p id="txtCityStateZIP">City</p>
+                </div>
+            <h4>Phone</h4>
+            <p id="txtPhoneNumber">Phone Number</p>
+            <h4 >Hire Date</h4>
+            <p id="txtHireDate">Hire Date</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+        var objCharacter;
+        $.getJSON('https://swollenhippo.com/getProfileDetailsByAPIKey.php',
+            {APIKey: 'DuffManSays,Phrasing!',Codename: 'Duchess'},
+            (result) => {
+                objCharacter= result;
+                console.log(objCharacter);
+                $('#txtOrgName').text(objCharacter.Agency);
+                $('#txtFirstName').text(objCharacter.FirstName);
+                $('#txtLastName').text(objCharacter.LastName);
+                $('#txtStreetAddress').text(objCharacter.Street1);
+                $('#txtCityStateZIP').text(objCharacter.City +', ' + objCharacter.State + ' ' + objCharacter.ZIP);
+                $('#txtPhoneNumber').text(objCharacter.Phone);
+                $('#txtHireDate').text(objCharacter.HireDate);
+                $('#txtJob').text(objCharacter.Job);
+                $('#imgProfile').attr('src',objCharacter.Image);
+                $('#imgProfile').attr('alt',objCharacter.FirstName + ' ' + objCharacter.LastName + ' Profile Image');
+        });
+    </script>
+  </body>
+</html>
